@@ -22,9 +22,11 @@ def print_header
   puts "--------------"
 end
 
+# use each with index to display index with student name and cohort
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  students.each_with_index do |student, index|
+    # without +1, index begins at 0.
+    puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
