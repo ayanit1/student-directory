@@ -42,13 +42,13 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "--------------"
+  puts "The students of Villains Academy".center(50)
+  puts "--------------".center(50)
 end
 
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{student[:name]} (#{student[:cohort]} cohort)".center(50)
   end
 end
 
@@ -106,7 +106,7 @@ def print_with_loop(students)
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students".center(50)
 end
 
 # added seperator just to make things look more presentable
@@ -119,6 +119,7 @@ end
 students = input_students
 print_header
 print(students)
+new_line
 print_footer(students)
 new_line
 print_with_index(students)
