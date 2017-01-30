@@ -39,6 +39,16 @@ def print_alphabetical_order(students)
   end
 end
 
+def print_less_than_12(students)
+  puts "Students whose name is shorter than 12 characters"
+  students.each do |student|
+    # show if student value length is less than 12
+    if (student[:name]).length < 12
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
+  end
+end
+
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
@@ -48,10 +58,13 @@ def new_line
   puts " "
 end
 
+
 # nothing happens until we call the methods
 students = input_students
-print_alphabetical_order(students)
-new_line
 print_header
 print(students)
 print_footer(students)
+new_line
+print_alphabetical_order(students)
+new_line
+print_less_than_12(students)
