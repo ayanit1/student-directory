@@ -1,3 +1,4 @@
+# old input_students asking for name and hard coded cohort
 # def input_students
   # puts "Please enter the name of the students"
   # puts "to finish, just hit return twice"
@@ -25,19 +26,43 @@ def input_students
     puts "Fill out the following information"
     puts "Student Name:"
     name = gets.chomp
+      while name.empty?
+        puts "A name must be entered. Please enter a student name."
+        name = gets.chomp
+      end
     puts "Age:"
     age = gets.chomp
     puts "Date of birth:"
     dob = gets.chomp
     puts "Country of Birth:"
     birthplace = gets.chomp
-    students << {name: name, cohort: :november, age: age, dob: dob, birthplace: birthplace}
-    puts "Now we have #{students.count} students"
-    puts "Do you wish you add another student? Y/N"
+    puts "Cohort:"
+    # converts user input to symbol
+    cohort = gets.chomp.downcase.to_sym
+      # if nothing is entered default cohort will be :november
+      if cohort.empty?
+        cohort = :november
+      end
+    puts """
+    Summary
+    Student Name: #{name}
+    Age: #{age}
+    Date of birth: #{dob}
+    Birthplace: #{birthplace}
+    cohort: #{cohort}
+    ---------------
+    Is this information correct? Y/N
+    """
     choice = gets.chomp
-    if choice == "N"
-      tracker = true
+    if choice == "Y"
+      students << {name: name, cohort: cohort, age: age, dob: dob, birthplace: birthplace}
+      puts "Now we have #{students.count} students"
     end
+      puts "Do you wish you add another student? Y/N"
+      choice = gets.chomp
+        if choice == "N"
+          tracker = true
+        end
   end
   students
 end
