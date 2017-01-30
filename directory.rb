@@ -17,6 +17,7 @@
 #   students
 # end
 
+# new input_students asking more information
 def input_students
   students = []
   tracker = false
@@ -41,17 +42,20 @@ def input_students
   students
 end
 
+# prints header for information
 def print_header
   puts "The students of Villains Academy".center(centered_txt)
   puts "--------------".center(centered_txt)
 end
 
+# prints students showing name and cohort
 def print(students)
   students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)".center(centered_txt)
   end
 end
 
+# prints students showing index, name and cohort
 def print_with_index(students) # use each with index to display index with student name and cohort
   puts "Number before the name of each student:"
   students.each_with_index do |student, index|
@@ -60,6 +64,7 @@ def print_with_index(students) # use each with index to display index with stude
   end
 end
 
+# prints students in alphabetical order
 def print_alphabetical_order(students)
   puts "Students sorted in alphabetical order:"
   # sorts hash by value of the key :name, returns hash assigned to sorted
@@ -81,6 +86,7 @@ def print_students_beginning_with(students)
   end
 end
 
+# prints students with less than 12 characters
 def print_less_than_12(students)
   puts "Students whose name is shorter than 12 characters"
   students.each do |student|
@@ -91,6 +97,7 @@ def print_less_than_12(students)
   end
 end
 
+# print students using while loop instead of each
 def print_with_loop(students)
   puts "Printed using while loops"
   total_students = students.count
@@ -105,6 +112,7 @@ def print_with_loop(students)
   end
 end
 
+# prints footer summarizing how many students
 def print_footer(students)
   puts "Overall, we have #{students.count} great students".center(centered_txt)
 end
@@ -114,12 +122,12 @@ def new_line
   puts " "
 end
 
+# To change value of alignment of centered variable
 def centered_txt
   centered_txt = 50
 end
 
 
-# nothing happens until we call the methods
 centered_txt
 students = input_students
 print_header
