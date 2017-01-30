@@ -22,7 +22,14 @@ def print_header
   puts "--------------"
 end
 
-def print(students) # use each with index to display index with student name and cohort
+def print(students)
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  end
+end
+
+def print_with_index(students) # use each with index to display index with student name and cohort
+  puts "Number before the name of each student:"
   students.each_with_index do |student, index|
     # without +1, index begins at 0.
     puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
@@ -49,8 +56,22 @@ def print_less_than_12(students)
   end
 end
 
-def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+def print_with_loop(students)
+  puts "Printed using while loops"
+  total_students = students.count
+  i = 0 # beginning incriment
+  arr = [] # empty array to push hash into
+  # while i is not equal to the total_students do loop
+  while i != total_students
+    arr.push(students[i]) # pushes students into an array
+    # prints array with following information
+    puts "#{i + 1}. #{arr[i][:name]} (#{arr[i][:cohort]} cohort)"
+    i += 1 # incriment is plus 1
+  end
+end
+
+def print_footer(students)
+  puts "Overall, we have #{students.count} great students"
 end
 
 # added seperator just to make things look more presentable
@@ -65,6 +86,10 @@ print_header
 print(students)
 print_footer(students)
 new_line
+print_with_index(students)
+new_line
 print_alphabetical_order(students)
 new_line
 print_less_than_12(students)
+new_line
+print_with_loop(students)
