@@ -22,11 +22,20 @@ def print_header
   puts "--------------"
 end
 
-# use each with index to display index with student name and cohort
-def print(students)
+def print(students) # use each with index to display index with student name and cohort
   students.each_with_index do |student, index|
     # without +1, index begins at 0.
     puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  end
+end
+
+def print_alphabetical_order(students)
+  puts "Students sorted in alphabetical order:"
+  # sorts hash by value of the key :name, returns hash assigned to sorted
+  sorted = students.sort_by {|sort| sort[:name]}
+  # goes through new hash sorted and prints name and cohort
+  sorted.each do |student|
+  puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
@@ -34,8 +43,15 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 
+# added seperator just to make things look more presentable
+def new_line
+  puts " "
+end
+
 # nothing happens until we call the methods
 students = input_students
+print_alphabetical_order(students)
+new_line
 print_header
 print(students)
 print_footer(students)
