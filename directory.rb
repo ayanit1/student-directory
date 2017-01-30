@@ -46,6 +46,17 @@ def print_alphabetical_order(students)
   end
 end
 
+# print students with a certain letter rather than showing all
+def print_students_beginning_with(students)
+  puts "Show students beginning with which letter? "
+  letter = gets.chomp
+  students.each do |student|
+    if student[:name][0] == letter
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
+  end
+end
+
 def print_less_than_12(students)
   puts "Students whose name is shorter than 12 characters"
   students.each do |student|
@@ -89,6 +100,8 @@ new_line
 print_with_index(students)
 new_line
 print_alphabetical_order(students)
+new_line
+print_students_beginning_with(students)
 new_line
 print_less_than_12(students)
 new_line
