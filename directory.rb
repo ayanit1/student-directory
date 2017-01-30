@@ -1,19 +1,43 @@
-def input_students
-  puts "Please enter the name of the students"
-  puts "to finish, just hit return twice"
+# def input_students
+  # puts "Please enter the name of the students"
+  # puts "to finish, just hit return twice"
   # create an empty array
-  students = []
+  # students = []
   # get the first name
-  name = gets.chomp
+  # name = gets.chomp
   # while the name is not empty, repeat this code
-  while !name.empty? do
+  # while !name.empty? do
     # add the student hash to the arrays
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+  #   students << {name: name, cohort: :november}
+  #   puts "Now we have #{students.count} students"
     # get another name from the user
-    name = gets.chomp
-  end
+  #   name = gets.chomp
+#   end
   # return the array of students
+#   students
+# end
+
+def input_students
+  students = []
+  tracker = false
+  while tracker == false
+    puts "Fill out the following information"
+    puts "Student Name:"
+    name = gets.chomp
+    puts "Age:"
+    age = gets.chomp
+    puts "Date of birth:"
+    dob = gets.chomp
+    puts "Country of Birth:"
+    birthplace = gets.chomp
+    students << {name: name, cohort: :november, age: age, dob: dob, birthplace: birthplace}
+    puts "Now we have #{students.count} students"
+    puts "Do you wish you add another student? Y/N"
+    choice = gets.chomp
+    if choice == "N"
+      tracker = true
+    end
+  end
   students
 end
 
