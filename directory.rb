@@ -1,22 +1,24 @@
 # old input_students asking for name and hard coded cohort
-# def input_students
-  # puts "Please enter the name of the students"
-  # puts "to finish, just hit return twice"
+=begin
+def input_students
+  puts "Please enter the name of the students"
+  puts "to finish, just hit return twice"
   # create an empty array
-  # students = []
+  students = []
   # get the first name
-  # name = gets.chomp
+  name = gets.chomp
   # while the name is not empty, repeat this code
-  # while !name.empty? do
+  while !name.empty? do
     # add the student hash to the arrays
-  #   students << {name: name, cohort: :november}
-  #   puts "Now we have #{students.count} students"
+    students << {name: name, cohort: :november}
+    puts "Now we have #{students.count} students"
     # get another name from the user
-  #   name = gets.chomp
-#   end
+    name = gets.chomp
+  end
   # return the array of students
-#   students
-# end
+  students
+end
+=end
 
 # new input_students asking more information
 def input_students
@@ -26,6 +28,7 @@ def input_students
     puts "Fill out the following information"
     puts "Student Name:"
     name = gets.chomp
+      # makes sure a name is not empty
       while name.empty?
         puts "A name must be entered. Please enter a student name."
         name = gets.chomp
@@ -43,6 +46,8 @@ def input_students
       if cohort.empty?
         cohort = :november
       end
+    # if user has made a typo the information will not be stored
+    # and they can re-enter data
     puts """
     Summary
     Student Name: #{name}
@@ -63,7 +68,7 @@ def input_students
         if choice == "N"
           tracker = true
         end
-  end
+    end
   students
 end
 
@@ -137,6 +142,30 @@ def print_with_loop(students)
   end
 end
 
+# goes through hash and returns array of existing cohorts
+def print_all_existing_cohorts(students)
+  puts "Students sorted by cohort"
+  arr = []
+  students.each do |student|
+    student.select do |k,v|
+      arr.push(student[:cohort])
+    end
+  end
+  # gets an array of exisint cohorts
+  existing_cohorts = arr.uniq
+  # uses array to display all cohorts for various months
+  existing_cohorts.each do |month|
+    puts "\n#{month.to_s.capitalize} cohort"
+    students.each do |student|
+      student.select do |k,v|
+        if v == month
+        puts "#{student[:name]}"
+        end
+      end
+    end
+  end
+end
+
 # prints footer summarizing how many students
 def print_footer(students)
   puts "Overall, we have #{students.count} great students".center(centered_txt)
@@ -169,3 +198,5 @@ new_line
 print_less_than_12(students)
 new_line
 print_with_loop(students)
+new_line
+print_all_existing_cohorts(students)
