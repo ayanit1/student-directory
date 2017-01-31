@@ -61,7 +61,11 @@ def input_students
     choice = gets.chomp
     if choice == "Y"
       students << {name: name, cohort: cohort, age: age, dob: dob, birthplace: birthplace}
-      puts "Now we have #{students.count} students"
+      if students.count == 1
+        puts "Now we have #{students.count} student"
+      else
+        puts "Now we have #{students.count} students"
+      end
     end
       puts "Do you wish you add another student? Y/N"
       choice = gets.chomp
@@ -168,7 +172,11 @@ end
 
 # prints footer summarizing how many students
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(centered_txt)
+  if students.count == 1
+    puts "Overall, we have #{students.count} great student".center(centered_txt)
+  else
+    puts "Overall, we have #{students.count} great students".center(centered_txt)
+  end
 end
 
 # added seperator just to make things look more presentable
