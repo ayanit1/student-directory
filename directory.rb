@@ -47,9 +47,7 @@ def input_students
     # converts user input to symbol
     cohort = gets.chomp.downcase.to_sym
       # if nothing is entered default cohort will be :november
-      if cohort.empty?
-        cohort = :november
-      end
+    cohort = :november if cohort.empty?
     # if user has made a typo the information will not be stored
     # and they can re-enter data
     puts """
@@ -94,10 +92,9 @@ def print(students)
 end
 
 # prints students showing index, name and cohort
-def print_with_index(students) # use each with index to display index with student name and cohort
+def print_with_index(students)
   puts "Number before the name of each student:"
   students.each_with_index do |student, index|
-    # without +1, index begins at 0.
     puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
@@ -107,10 +104,10 @@ def print_alphabetical_order(students)
   puts "Students sorted in alphabetical order:"
   # sorts hash by value of the key :name, returns hash assigned to sorted
   sorted = students.sort_by {|sort| sort[:name]}
-  # goes through new hash sorted and prints name and cohort
-  sorted.each do |student|
-  puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  end
+    # goes through new hash sorted and prints name and cohort
+    sorted.each do |student|
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
 end
 
 # print students with a certain letter rather than showing all
@@ -126,7 +123,7 @@ end
 
 # prints students with less than 12 characters
 def print_less_than_12(students)
-  puts "Students whose name is shorter than 12 characters"
+  puts "Students whose name is shorter than 12 characters:"
   students.each do |student|
     # show if student value length is less than 12
     if (student[:name]).length < 12
@@ -152,7 +149,7 @@ end
 
 # goes through hash and returns array of existing cohorts
 def print_all_existing_cohorts(students)
-  puts "Students sorted by cohort"
+  puts "Students sorted by cohort:"
   arr = []
   students.each do |student|
     student.select do |k,v|
@@ -166,9 +163,7 @@ def print_all_existing_cohorts(students)
     puts "\n#{month.to_s.capitalize} cohort"
     students.each do |student|
       student.select do |k,v|
-        if v == month
-        puts "#{student[:name]}"
-        end
+        puts "#{student[:name]}" if v == month
       end
     end
   end
@@ -212,3 +207,6 @@ new_line
 print_with_loop(students)
 new_line
 print_all_existing_cohorts(students)
+
+# 10. An alternative to .chomp method?
+# .strip
