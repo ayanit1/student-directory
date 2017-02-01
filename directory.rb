@@ -78,6 +78,14 @@ def input_students
   students
 end
 
+# checks if user doesn't enter any students
+def check_if_empty(students)
+  if students.empty?
+    puts "There are currently no students in the database!"
+    input_students
+  end
+end
+
 # prints header for information
 def print_header
   puts "The students of Villains Academy".center(centered_txt)
@@ -191,6 +199,7 @@ end
 
 centered_txt
 students = input_students
+check_if_empty(students)
 print_header
 print(students)
 new_line
