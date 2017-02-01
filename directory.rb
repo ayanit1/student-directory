@@ -196,7 +196,7 @@ def centered_txt
   centered_txt = 50
 end
 
-
+=begin
 centered_txt
 students = input_students
 check_if_empty(students)
@@ -219,3 +219,34 @@ print_all_existing_cohorts(students)
 
 # 10. An alternative to .chomp method?
 # .strip
+
+=end
+
+def interactive_menu
+  students =[]
+  loop do
+    # 1. print the menu and ask the user what to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit" # 9  because we'll be adding more items
+    # 2. read the input and save it to the variable
+    selection = gets.chomp
+    # 3. do what the user has asked
+      case selection
+        when "1"
+          # input the students
+          students = input_students
+        when "2"
+          # show the students
+          print_header
+          print(students)
+          print_footer(students)
+        when "9"
+          exit(0) # this will cause the program to terminate
+        else
+          puts "I don't know what you meant, try again"
+      end
+  end
+end
+
+interactive_menu
