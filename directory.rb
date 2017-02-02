@@ -4,12 +4,13 @@ require 'csv'
 
 
 def input_students
-  puts "Please enter the name of the students"
+  puts "\nPlease enter the name of the students"
   puts "to finish, just hit return twice"
   user_input_marker
   name = STDIN.gets.chomp
   while !name.empty?
     add_students(name)
+    puts "Added '#{name}' to the directory"
     if @students.count == 1
       puts "Now we have #{@students.size} student"
     elsif @students.count == 0
@@ -51,6 +52,7 @@ def print_menu
 end
 
 def show_students
+  puts "\nDisplay students:\n"
   print_header
   print_students_list
   print_footer
@@ -102,6 +104,7 @@ def save_students
     csv_line = student_data.join(',')
     file.puts csv_line
   end
+  puts 'File has been saved'
   file.close
 end
 
@@ -111,16 +114,18 @@ def load_students(filename = 'students.csv')
   name, cohort = line.chomp.split(',')
     add_students(name, cohort)
   end
+  puts 'File has been loaded'
   file.close
 end
 
-def auto_load
-  file = CSV.open('students.csv','r')
+def auto_load(filename)
+  file = CSV.open(filename,'r')
     file.each do |line|
       name, cohort = line
       add_students(name, cohort)
     end
   file.close
+  puts "Autoloaded file: #{filename}"
 end
 
 def user_input_marker
@@ -128,5 +133,5 @@ def user_input_marker
 end
 
 
-auto_load
+auto_load('students.csv')
 interactive_menu
