@@ -125,21 +125,14 @@ def load_students
 end
 
 def auto_load(filename)
-  file = CSV.open(filename,'r')
-  # check if file is empty
-  CSV.foreach(filename) do |row|
-    if row.empty?
-      file.close
-      puts '*No data has been preloaded'
-    else
-      file.each do |line|
-        name, cohort = line
-        add_students(name, cohort)
-        puts "Autoloaded file: #{filename}"
-      end
-      file.close
-    end
-  end
+  file_loaded = false
+  CSV.foreach(filename) {|row| unless row[0].nil?
+                                 name, cohort = row
+                                 add_students(name, cohort)
+                                 file_loaded = true
+                               end
+    }
+  puts "Loaded file: #{filename}" if file_loaded == true
 end
 
 def user_input_marker
