@@ -98,7 +98,7 @@ def print_footer
 end
 
 def save_students
-  puts 'Type in the name of the file you wish to save'
+  puts "\nType in the name of the file you wish to save"
   user_input_marker
   filename = STDIN.gets.chomp
   file = File.open(filename, 'w')
@@ -124,22 +124,32 @@ def load_students
   file.close
 end
 
-def auto_load(filename)
-  file = CSV.open(filename,'r')
+
+# def auto_load(filename)
+  # file = CSV.open(filename,'r')
   # check if file is empty
-  CSV.foreach(filename) do |row|
-    if row.empty?
-      file.close
-      puts '*No data has been preloaded'
-    else
-      file.each do |line|
-        name, cohort = line
-        add_students(name, cohort)
-        puts "Autoloaded file: #{filename}"
-      end
-      file.close
-    end
-  end
+  #  if CSV.foreach(filename).empty?
+  #    file.close
+  #    puts "\n*No data has been preloaded"
+  #  else
+  #    file.each do |line|
+  #      name, cohort = line
+  #      add_students(name, cohort)
+  #      puts "Autoloaded file: #{filename}"
+  #    end
+  #    file.close
+  #  end
+# end
+
+def auto_load(filename)
+  CSV.foreach(filename,'r') {|row| if row[0].nil?
+                                     puts "\nNo data has been preloaded"
+                                   else
+                                     name, cohort = row
+                                     add_students(name, cohort)
+                                     puts "Autoloaded file: #{filename}"
+                                   end
+  }
 end
 
 def user_input_marker
