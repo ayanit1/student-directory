@@ -105,10 +105,10 @@ def save_students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(',')
-    file.puts csv_line
+    # passes a block so that we don't have to close explicitly
+    File.open(filename, 'w') {|csv| file.puts csv_line}
   end
   puts 'File has been saved'
-  file.close
 end
 
 def load_students
