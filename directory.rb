@@ -116,12 +116,10 @@ def load_students
   user_input_marker
   filename = STDIN.gets.chomp
   file = CSV.open(filename, 'r')
-  file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-    add_students(name, cohort)
-  end
-  puts 'File has been loaded'
-  file.close
+  file.readlines.each {|line| name, cohort = line
+                              add_students(name, cohort)
+    }
+  puts "File #{filename} has been loaded"
 end
 
 def auto_load(filename)
