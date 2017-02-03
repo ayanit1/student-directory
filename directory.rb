@@ -98,7 +98,10 @@ def print_footer
 end
 
 def save_students
-  file = File.open('students.csv', 'w')
+  puts 'Type in the name of the file you wish to save'
+  user_input_marker
+  filename = STDIN.gets.chomp
+  file = File.open(filename, 'w')
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(',')
@@ -108,8 +111,11 @@ def save_students
   file.close
 end
 
-def load_students(filename = 'students.csv')
-  file = File.open('students.csv','r')
+def load_students
+  puts 'Type in the name of the file you wish to load'
+  user_input_marker
+  filename = STDIN.gets.chomp
+  file = CSV.open(filename, 'r')
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
     add_students(name, cohort)
@@ -120,12 +126,20 @@ end
 
 def auto_load(filename)
   file = CSV.open(filename,'r')
-    file.each do |line|
-      name, cohort = line
-      add_students(name, cohort)
+  # check if file is empty
+  CSV.foreach(filename) do |row|
+    if row.empty?
+      file.close
+      puts '*No data has been preloaded'
+    else
+      file.each do |line|
+        name, cohort = line
+        add_students(name, cohort)
+        puts "Autoloaded file: #{filename}"
+      end
+      file.close
     end
-  file.close
-  puts "Autoloaded file: #{filename}"
+  end
 end
 
 def user_input_marker
