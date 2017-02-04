@@ -97,20 +97,6 @@ def print_footer
   end
 end
 
-#def save_students
-#  puts 'Type in the name of the file you wish to save'
-#  user_input_marker
-#  filename = STDIN.gets.chomp
-#  file = File.open(filename, 'w')
-#  @students.each do |student|
-#    student_data = [student[:name], student[:cohort]]
-#    csv_line = student_data.join(',')
-#    file.puts csv_line
-#  end
-#  puts "File #{filename} has been saved"
-#  file.close
-#end
-
 def save_students
   puts 'Type in the name of the file you wish to save as'
   user_input_marker
